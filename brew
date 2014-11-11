@@ -1,0 +1,112 @@
+#!/usr/bin/env bash
+
+#######################
+## Utility Functions ##
+#######################
+
+log() {
+  printf "\n####################%b####################\n" "$1"
+}
+
+expand_alias() {
+  brew info "$1" 2>/dev/null | head -1 | awk '{gsub(/:/, ""); print $1}'
+}
+
+is_installed() {
+  local name="$(expand_alias "$1")"
+  brew list -1 | grep -Fqx "$name"
+}
+
+is_upgradable() {
+  local name="$(expand_alias "$1")"
+  brew outdated --quiet "$name" >/dev/null
+  [[ $? -ne 0 ]]
+}
+
+brewui() {
+  if is_installed "$1"; then
+    if is_upgradable "$1"; then
+      log "Upgrading $1"
+      brew upgrade "$@"
+      log "Done"
+    fi
+  else
+    log "Installing $1"
+    brew install "$@"
+    log "Done"
+  fi
+}
+
+
+###################
+## Install Brews ##
+###################
+
+# Upgrade anything already installed.
+brew upgrade
+
+brewui 'bash'
+brewui 'bash-completion'
+
+# Add the new bash shell to the allowed shells list.
+printf "%s\n" "$(which bash)" >> /etc/shells
+
+# Git and GitHub add-ons.
+brewui 'git'
+brewui 'hub'
+
+# Thanks to the Thoughtbot team and the Laptop project.
+# https://github.com/thoughtbot/laptop
+brewui 'postgres'
+brewui 'redis'
+brewui 'the_silver_searcher'
+brewui 'vim --override-system-vi'
+brewui 'ctags'
+brewui 'tmux'
+brewui 'reattach-to-user-namespace'
+brewui 'imagemagick --with-webp'
+brewui 'qt'
+brewui 'watch'
+
+# OpenSSL unlink and link to avoid conflicts with Homebrew.
+brewui 'openssl'
+brew unlink openssl && brew link openssl --force
+
+# Install Heroku CLI and extra utitlites.
+brewui 'heroku-toolbelt'
+heroku plugins:install https://github.com/ddollar/heroku-config.git
+
+# More nice utitlities.
+brewui 'wget --with-iri'
+brewui 'ringojs'
+brewui 'narwhal'
+brewui 'webkit2png'
+brewui 'rename'
+brewui 'rhino'
+
+
+################
+## Setup Node ##
+################
+
+# TODO: Get the latest version dynamically.
+node_version="0.10"
+
+# brew install node
+brewui 'nvm'
+source $(brew --prefix nvm)/nvm.sh
+
+log "Installing Node $node_version"
+nvm install "$node_version"
+log "Done"
+
+log "Setting Node $node_version as the global default"
+nvm alias default "$node_version"
+log "Done"
+
+
+#############
+## Cleanup ##
+#############
+
+brew cleanup

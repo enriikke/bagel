@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+
+brew tap caskroom/cask
+brew install brew-cask
+
+
+####################
+##### Browsers #####
+####################
+
+brew cask install google-chrome
+brew cask install firefox
+brew cask install opera
+
+
+####################
+##### Editors ######
+####################
+
+brew cask install atom
+
+
+####################
+##### Utilities ####
+####################
+
+brew cask install iterm2
+brew cask install dropbox
+brew cask install evernote
+brew cask install slack
+brew cask install mailbox
+brew cask install pgadmin3
+brew cask install screenhero
+brew cask install skype
+brew cask install caffeine
+
+
+####################
+######## Fun #######
+####################
+
+brew cask install spotify
