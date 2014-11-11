@@ -29,6 +29,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 set -e
 
+# Letting you know bagel started
+printf "\n\n\n#########################\nSTART\n#########################\n\n\n"
+
 
 ##################
 ## Update Bagel ##
@@ -50,5 +53,8 @@ source ./ruby       # Set up ruby environment
 source ./node       # Set up node environment
 source ./python     # Set up python environment
 source ./cask       # Install common applications
-source ./dots       # Move dot files to home dir
 source ./osx        # Set some nice OSX defaults
+source ./dots       # Move dot files to home dir
+
+
+printf "\n\n\n#########################\nDONE\n#########################\n\n\n"

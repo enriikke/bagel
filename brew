@@ -46,6 +46,7 @@ brewui 'narwhal'
 brewui 'webkit2png'
 brewui 'rename'
 brewui 'rhino'
+brewui 'cmake'
 
 # Remove outdated packages
 log 'Removing outdated packages'

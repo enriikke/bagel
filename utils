@@ -8,12 +8,6 @@ log() {
   printf "\n++++++++++++++++++++ %b ++++++++++++++++++++\n" "$1"
 }
 
-run() {
-  log "$1"
-  eval "$2"
-  log "Done"
-}
-
 expand_alias() {
   brew info "$1" 2>/dev/null | head -1 | awk '{gsub(/:/, ""); print $1}'
 }

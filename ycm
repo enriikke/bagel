@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# If you are using YouCompleteMe for vim code-completion
+# then you may find the following code useful.
+
+
+# Grab the current directory for future reference
+current_dir=$(pwd)
+
+# Create a temporary holder directory for the make files
+# If the folder already exist just wack it
+rm -rf -- ~/ycm_build/
+mkdir ~/ycm_build
+cd ~/ycm_build
+
+# Compile the libraries
+cmake -G "Unix Makefiles" . ~/.vim/vim-addons/YouCompleteMe/third_party/ycmd/cpp/
+make ycm_support_libs
+
+# Remove the holder directory
+cd "$current_dir"
+rm -rf -- ~/ycm_build/

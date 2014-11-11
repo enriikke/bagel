@@ -6,7 +6,7 @@
 
 function moveDots() {
 	rsync -avh --no-perms ./dotfiles/ ~;
-	source ~/.bash_profile;
+	# source ~/.bash_profile;
 }
 
 moveDots;
