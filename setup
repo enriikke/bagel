@@ -1,124 +1,54 @@
 #!/usr/bin/env bash
 
+# Welcome! Lets build an awesome dev box together.
+# Run me and then go eat a bagel.
+#
+#
+# This script is heavily influenced by the laptop project from the great
+# thoughtbot team and the fantastic Mathias Bynens' dot files - by "heavily
+# influenced" I mean a lot of copypasta going on :-)
+#
+# Many thanks to both thoughtbot and Mathias Bynens.
+#
+# - https://github.com/thoughtbot/laptop
+# - https://github.com/mathiasbynens/dotfiles
+
+
+
+###########################
+## Sudo | Error Handling ##
+###########################
+
 # Ask for the administrator password upfront
 sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-
-#######################
-## Utility Functions ##
-#######################
-
-log() {
-  printf "\n####################%b####################\n" "$1"
-}
-
-
-#################
-## Get Rolling ##
-#################
-
+# Kill execution if something goes wrong. TODO: exit more gracefully.
 trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 set -e
 
-if [[ ! -d "$HOME/.bin/" ]]; then
-  mkdir "$HOME/.bin"
-fi
 
+##################
+## Update Bagel ##
+##################
 
-####################
-## Homebrew Setup ##
-####################
-
-if ! command -v brew >/dev/null; then
-  log "Installing Homebrew"
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  export PATH="/usr/local/bin:$PATH"
-  log "Done"
-else
-  log "Homebrew is already installed"
-fi
-
-log "Updating Homebrew formulae"
-brew update
-log "Done"
-
-# Install brew goodness.
-source ./brew
-source ./cask
+cd "$(dirname "${BASH_SOURCE}")"
+git pull origin master
 
 
 #################
-## Shell Setup ##
+## Bagel Magic ##
 #################
 
-if [[ "$SHELL" != */bash ]]; then
-  log "Changing shell to bash"
-  chsh -s $(which bash)
-  log "Done"
-fi
-
-
-################
-## Setup Ruby ##
-################
-
-# TODO: Get the latest version dynamically.
-ruby_version="2.1.4"
-
-log "Installing rbenv"
-brew install rbenv
-eval "$(rbenv init -)"
-log "Done"
-
-log "Installing rbenv-gem-rehash"
-brew install rbenv-gem-rehash
-log "Done"
-
-log "Installing ruby-build"
-brew install ruby-build
-log "Done"
-
-log "Installing Ruby $ruby_version"
-rbenv install -s "$ruby_version"
-log "Done"
-
-log "Setting Ruby $ruby_version as the global default"
-rbenv global "$ruby_version"
-rbenv local "$ruby_version"
-rbenv rehash
-log "Done"
-
-log "Updating to the latests Rubygems version"
-gem update --system
-log "Done"
-
-log "Installing Bundler"
-gem install bundler --no-document
-log "Done"
-
-log "Configuring Bundler"
-bundle config --global jobs $(((sysctl -n hw.ncpu) -  1))
-log "Done"
-
-log "Installing Rails"
-gem install rails --no-document
-log "Done"
-
-log "Installing Parity"
-gem install parity --no-document
-log "Done"
-
-
-#################
-## OSX Goodies ##
-#################
-source ./osx
-
-
-###############
-## Dot Files ##
-###############
-source ./dots
+source ./utils      # Utility functions
+source ./bootstrap  # Base configuration
+source ./shell      # Update and set bash as the shell
+source ./brew       # Install homebrew components
+source ./ruby       # Set up ruby environment
+source ./node       # Set up node environment
+source ./python     # Set up python environment
+source ./cask       # Install common applications
+source ./dots       # Move dot files to home dir
+source ./osx        # Set some nice OSX defaults

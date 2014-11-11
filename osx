@@ -5,6 +5,8 @@
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
+# If you don't know BMO then check this out:
+# https://www.google.com/search?q=adventure+time+bmo&espv=2&biw=1440&bih=801&source=lnms&tbm=isch&sa=X&ei=PjBiVIauLsyXNqeNgsgG&ved=0CAYQ_AUoAQ
 sudo scutil --set ComputerName "BMO"
 sudo scutil --set HostName "BMO"
 sudo scutil --set LocalHostName "BMO"

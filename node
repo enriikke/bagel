@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+################
+## Node Setup ##
+################
+
+# TODO: Get the latest version dynamically
+node_version="0.10"
+
+# brew install node
+brewui 'nvm'
+source $(brew --prefix nvm)/nvm.sh
+
+log "Installing Node $node_version"
+nvm install "$node_version"
+log "Done"
+
+log "Setting Node $node_version as the global default"
+nvm alias default "$node_version"
+log "Done"

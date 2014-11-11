@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+#######################
+## Utility Functions ##
+#######################
+
+log() {
+  printf "\n++++++++++++++++++++ %b ++++++++++++++++++++\n" "$1"
+}
+
+run() {
+  log "$1"
+  eval "$2"
+  log "Done"
+}
+
+expand_alias() {
+  brew info "$1" 2>/dev/null | head -1 | awk '{gsub(/:/, ""); print $1}'
+}
+
+is_installed() {
+  local name="$(expand_alias "$1")"
+  brew list -1 | grep -Fqx "$name"
+}
+
+is_upgradable() {
+  local name="$(expand_alias "$1")"
+  brew outdated --quiet "$name" >/dev/null
+  [[ $? -ne 0 ]]
+}
+
+brewui() {
+  if is_installed "$1"; then
+    if is_upgradable "$1"; then
+      log "Upgrading $1"
+      brew upgrade "$@"
+      log "Done"
+    fi
+  else
+    log "Installing $1"
+    brew install "$@"
+    log "Done"
+  fi
+}
+
+caski() {
+  log "Installing $1"
+  brew cask install "$@"
+  log "Done"
+}

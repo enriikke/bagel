@@ -1,44 +1,33 @@
 #!/usr/bin/env bash
 
+################
+## Cask Setup ##
+################
 
+log 'Installing Cask'
 brew tap caskroom/cask
 brew install brew-cask
+log 'Done'
 
+# Browsers
+caski google-chrome
+caski firefox
+caski opera
 
-####################
-##### Browsers #####
-####################
+# Editors
+caski atom
 
-brew cask install google-chrome
-brew cask install firefox
-brew cask install opera
+# Utilities
+caski iterm2
+caski postgres
+caski dropbox
+caski evernote
+caski slack
+caski mailbox
+caski pgadmin3
+caski screenhero
+caski skype
+caski caffeine
 
-
-####################
-##### Editors ######
-####################
-
-brew cask install atom
-
-
-####################
-##### Utilities ####
-####################
-
-brew cask install iterm2
-brew cask install postgres
-brew cask install dropbox
-brew cask install evernote
-brew cask install slack
-brew cask install mailbox
-brew cask install pgadmin3
-brew cask install screenhero
-brew cask install skype
-brew cask install caffeine
-
-
-####################
-######## Fun #######
-####################
-
-brew cask install spotify
+# Fun
+caski spotify
