@@ -57,7 +57,7 @@ brewui 'hub'
 
 # Thanks to the Thoughtbot team and the Laptop project.
 # https://github.com/thoughtbot/laptop
-brewui 'postgres'
+# brewui 'postgres' # Using PostgresApp instead.
 brewui 'redis'
 brewui 'the_silver_searcher'
 brewui 'vim --override-system-vi'

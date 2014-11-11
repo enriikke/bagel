@@ -26,6 +26,7 @@ brew cask install atom
 ####################
 
 brew cask install iterm2
+brew cask install postgres
 brew cask install dropbox
 brew cask install evernote
 brew cask install slack
