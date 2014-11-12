@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
 
-# Welcome! Lets build an awesome dev box together.
-# Run me and then go eat a bagel.
-#
-#
 # This script is heavily influenced by the laptop project from the great
-# thoughtbot team and the fantastic Mathias Bynens' dot files - by "heavily
-# influenced" I mean a lot of copypasta going on :-)
-#
-# Many thanks to both thoughtbot and Mathias Bynens.
+# thoughtbot team and the fantastic Mathias Bynens' dot files. Many thanks
+# to both. Checkout their repos here:
 #
 # - https://github.com/thoughtbot/laptop
 # - https://github.com/mathiasbynens/dotfiles
@@ -45,16 +39,16 @@ git pull origin master
 ## Bagel Magic ##
 #################
 
-source ./utils      # Utility functions
-source ./bootstrap  # Base configuration
-source ./shell      # Update and set bash as the shell
-source ./brew       # Install homebrew components
-source ./ruby       # Set up ruby environment
-source ./node       # Set up node environment
-source ./python     # Set up python environment
-source ./cask       # Install common applications
-source ./osx        # Set some nice OSX defaults
-source ./dots       # Move dot files to home dir
+source ./recipes/utils      # Utility functions
+source ./recipes/bootstrap  # Base configuration
+source ./recipe/shell       # Update and set bash as the shell
+source ./recipes/brew       # Install homebrew components
+source ./recipes/ruby       # Set up ruby environment
+source ./recipes/node       # Set up node environment
+source ./recipes/python     # Set up python environment
+source ./recipes/cask       # Install common applications
+source ./recipes/osx        # Set some nice OSX defaults
+source ./recipes/dots       # Move dot files to home dir
 
 
 printf "\n\n\n#########################\nDONE\n#########################\n\n\n"
