@@ -11,8 +11,8 @@ set nocompatible | filetype indent plugin on | syn on
 let mapleader = "\\"
 
 " Load all vim plugins using Vundle
-if filereadable(expand("./.vimrc.plugins"))
-  source ./.vimrc.plugins
+if filereadable(expand("~/.vimrc.plugins"))
+  source ~/.vimrc.plugins
 endif
 
 
@@ -95,6 +95,7 @@ noremap <Leader>gb :Gblame<cr>
 
 " NERDTree
 let NERDTreeWinPos='left'
+let NERDTreeShowHidden=1
 noremap <c-\> :NERDTreeToggle<cr>
 noremap <Leader>nf :NERDTreeFind<cr>
 
