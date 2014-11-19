@@ -5,14 +5,12 @@
 ####################
 
 # Update formulae
-log 'Updating homebrew formulae'
+log 'updating homebrew formulae'
 brew update
-log 'Done'
 
 # Upgrade installed formulae
-log 'Upgrading homebrew installed packages'
+log 'upgrading homebrew installed packages'
 brew upgrade
-log 'Done'
 
 # Git and GitHub add-ons
 brewui 'git'
@@ -49,6 +47,5 @@ brewui 'rhino'
 brewui 'cmake'
 
 # Remove outdated packages
-log 'Removing outdated packages'
+log 'removing outdated packages'
 brew cleanup
-log 'Done'

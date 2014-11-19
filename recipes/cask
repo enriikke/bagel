@@ -4,14 +4,16 @@
 ## Cask Setup ##
 ################
 
-log 'Installing Cask'
+log 'installing cask'
 brew tap caskroom/cask
 brew install brew-cask
-log 'Done'
+brew tap caskroom/versions
 
 # Browsers
 caski google-chrome
+caski google-chrome-canary
 caski firefox
+caski firefoxdeveloperedition
 caski opera
 
 # Editors
@@ -28,6 +30,9 @@ caski pgadmin3
 caski screenhero
 caski skype
 caski caffeine
+caski adobe-reader
+
+# brew cask install boot2docker
 
 # Fun
 caski spotify

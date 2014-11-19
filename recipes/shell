@@ -9,14 +9,12 @@ brewui 'bash-completion'
 
 # Add the new bash shell to the allowed shells list
 if ! grep $(which bash) /etc/shells; then
-  log 'Adding bash to /etc/shells'
+  log 'adding bash to /etc/shells'
   printf "%s\n" "$(which bash)" | sudo tee -a /etc/shells
-  log 'Done'
 fi
 
 # Change the default shell
-if [[ "$SHELL" != */bash ]]; then
-  log 'Changing shell to bash'
+if [[ "$SHELL" != $(which bash) ]]; then
+  log 'changing shell to bash'
   chsh -s $(which bash)
-  log 'Done'
 fi

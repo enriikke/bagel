@@ -4,15 +4,16 @@
 # General UI/UX                                                               #
 ###############################################################################
 
-log 'Setting up osx ui/ux defaults'
+log 'setting up osx ui/ux defaults'
 
 # Set computer name (as done via System Preferences → Sharing)
 # If you don't know BMO then check this out:
 # https://www.google.com/search?q=adventure+time+bmo&espv=2&biw=1440&bih=801&source=lnms&tbm=isch&sa=X&ei=PjBiVIauLsyXNqeNgsgG&ved=0CAYQ_AUoAQ
-sudo scutil --set ComputerName "BMO"
-sudo scutil --set HostName "BMO"
-sudo scutil --set LocalHostName "BMO"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "BMO"
+sudo scutil --set ComputerName "zelda"
+sudo scutil --set HostName "zelda"
+sudo scutil --set LocalHostName "zelda"
+sudo defaults write
+/Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "zelda"
 
 # Set highlight color to green
 defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
@@ -34,26 +35,26 @@ sudo systemsetup -setrestartfreeze on
 # Check for software updates daily, not just once per week
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
-log 'Done'
+log 'done'
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
 
-log 'Setting up trackpad defaults'
+log 'setting up trackpad defaults'
 
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
-log 'Done'
+log 'done'
 
 ###############################################################################
 # Screen                                                                      #
 ###############################################################################
 
-log 'Setting up screen defaults'
+log 'setting up screen defaults'
 
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
@@ -65,13 +66,13 @@ defaults write com.apple.screencapture location -string "${HOME}/Desktop"
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
 
-log 'Done'
+log 'done'
 
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
 
-log 'Setting up finder defaults'
+log 'setting up finder defaults'
 
 # Set Desktop as the default location for new Finder windows
 # For other paths, use `PfLo` and `file:///full/path/here/`
@@ -100,14 +101,14 @@ defaults write com.apple.finder EmptyTrashSecurely -bool true
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
-log 'Done'
+log 'done'
 
 
 ###############################################################################
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
 
-log 'Setting up dock/spaces/hot corners defaults'
+log 'setting up dock/spaces/hot corners defaults'
 
 # Don’t automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
@@ -134,4 +135,4 @@ defaults write com.apple.dock wvous-tl-modifier -int 0
 defaults write com.apple.dock wvous-tr-corner -int 4
 defaults write com.apple.dock wvous-tr-modifier -int 0
 
-log 'Done'
+log 'done'

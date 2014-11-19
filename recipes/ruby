@@ -5,46 +5,48 @@
 ################
 
 # TODO: Get the latest version dynamically
-ruby_version="2.1.3"
+ruby_version="2.1.4"
 
 brewui 'rbenv'
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
 eval "$(rbenv init -)"
 
 brewui 'rbenv-gem-rehash'
 brewui 'ruby-build'
 
-log "Installing Ruby $ruby_version"
+log "installing Ruby $ruby_version"
 rbenv install -s "$ruby_version"
-log "Done"
 
-log "Setting Ruby $ruby_version as the global default"
+log "setting ruby $ruby_version as the global default"
 rbenv global "$ruby_version"
-rbenv local "$ruby_version"
 rbenv rehash
-log "Done"
 
 
 #######################
 ## Nice-To-Have Gems ##
 #######################
 
-log "Updating to the latests Rubygems version"
+log "updating to the latests rubygems version"
 gem update --system
-log "Done"
 
-log "Installing Bundler"
+log "installing bundler"
 gem install bundler --no-document
-log "Done"
 
-log "Configuring Bundler"
+log "configuring bundler"
 number_of_cores=$(sysctl -n hw.ncpu)
 bundle config --global jobs $((number_of_cores - 1))
-log "Done"
 
-log "Installing Rails"
+log "installing rails"
 gem install rails --no-document
-log "Done"
 
-log "Installing Parity"
+log "installing parity"
 gem install parity --no-document
-log "Done"
+
+log "configuring postgres gem"
+bundle config build.pg --with-pg-config=/Applications/Postgres.app/Contents/Versions/9.3/bin/pg_config
+gem install pg
+
+log "installing hcl (harvest command line)"
+gem install hcl
+

@@ -4,6 +4,7 @@
 ## Dot Files ##
 ###############
 
+log "copying dot files to home directory"
 function moveDots() {
 	rsync -avh --no-perms ./dotfiles/ ~;
 	# source ~/.bash_profile;

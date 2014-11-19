@@ -8,47 +8,104 @@
 # - https://github.com/mathiasbynens/dotfiles
 
 
+bcolor=$(tput setaf 32)
+hcolor=$(tput setaf 32)
+ecolor=$(tput setaf 1)
+normal=$(tput sgr0)
 
-###########################
-## Sudo | Error Handling ##
-###########################
+ascii_art="
+ /##                                     /##
+| ##                                    | ##
+| #######   /######   /######   /###### | ##
+| ##__  ## |____  ## /##__  ## /##__  ##| ##
+| ##  \ ##  /#######| ##  \ ##| ########| ##
+| ##  | ## /##__  ##| ##  | ##| ##_____/| ##
+| #######/|  #######|  #######|  #######| ##
+|_______/  \_______/ \____  ## \_______/|__/
+                     /##  \ ##
+                    |  ######/
+                     \______/
+"
+
+welcome="
+Welcome! Lets build an awesome dev machine together.
+This might take a bit of time, so run me and then go
+eat a bagel - don't forget to add cream cheese!
+"
+
+pause="
+Ready to roll? Smash any key and let the magic begin.
+"
+
+finished="
+It looks like we are finished here. Now go and enjoy
+life inside your new dev environment!
+
+BTW, did you save me any bagels?
+"
+
+chaos="
+Oh no!! It looks like something failed. Checkout the
+errors below and try running bagel again.
+"
+
+function hlog {
+  printf "\n${hcolor}$1${normal}\n"
+  printf "=%.s" {1..55}
+  printf "\n\n"
+}
+
+function elog {
+  printf "${ecolor}$1${normal}\n"
+}
+
+function log {
+  printf "$1\n"
+}
+
+function clean {
+  printf "${ecolor}$chaos${normal}\n"
+  printf "$@"
+}
+
+
+# Start the bagel script
+printf "%s" "${bcolor}$ascii_art${normal}"
+printf "%s" "$welcome"
+read -p "$pause"
+
 
 # Ask for the administrator password upfront
-sudo -v
+# sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+# while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Kill execution if something goes wrong. TODO: exit more gracefully.
-trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
-set -e
-
-# Letting you know bagel started
-printf "\n\n\n#########################\nSTART\n#########################\n\n\n"
+# trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
+# set -e
 
 
-##################
-## Update Bagel ##
-##################
-
+# Before doing anything else update bagel
+hlog "Update Bagel"
+log "bagel is updating itself to the latest release"
+log "trying not to take over human kind"
 cd "$(dirname "${BASH_SOURCE}")"
 git pull origin master
+log "moving on"
 
+# Run all of the bagel recipes
+source ./recipes/utils
+source ./recipes/bootstrap
+source ./recipes/shell
+source ./recipes/brew
+source ./recipes/ruby
+source ./recipes/node
+source ./recipes/python
+source ./recipes/cask
+source ./recipes/osx
+source ./recipes/dots
 
-#################
-## Bagel Magic ##
-#################
+# We are done!
+printf "\n\n%s\n" "$finished"
 
-source ./recipes/utils      # Utility functions
-source ./recipes/bootstrap  # Base configuration
-source ./recipe/shell       # Update and set bash as the shell
-source ./recipes/brew       # Install homebrew components
-source ./recipes/ruby       # Set up ruby environment
-source ./recipes/node       # Set up node environment
-source ./recipes/python     # Set up python environment
-source ./recipes/cask       # Install common applications
-source ./recipes/osx        # Set some nice OSX defaults
-source ./recipes/dots       # Move dot files to home dir
-
-
-printf "\n\n\n#########################\nDONE\n#########################\n\n\n"
