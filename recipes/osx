@@ -14,8 +14,7 @@ log 'setting up osx ui/ux defaults'
 sudo scutil --set ComputerName "zelda"
 sudo scutil --set HostName "zelda"
 sudo scutil --set LocalHostName "zelda"
-sudo defaults write
-/Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "zelda"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "zelda"
 
 # Set highlight color to green
 defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
