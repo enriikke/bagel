@@ -4,6 +4,8 @@
 ## Ruby Setup ##
 ################
 
+hlog "Configuring Ruby"
+
 # TODO: Get the latest version dynamically
 ruby_version="2.1.4"
 
@@ -45,7 +47,7 @@ gem install parity --no-document
 
 log "configuring postgres gem"
 bundle config build.pg --with-pg-config=/Applications/Postgres.app/Contents/Versions/9.3/bin/pg_config
-gem install pg
+gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/9.3/bin/pg_config
 
 log "installing hcl (harvest command line)"
 gem install hcl

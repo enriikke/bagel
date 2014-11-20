@@ -4,6 +4,8 @@
 ## Shell Setup ##
 #################
 
+hlog "Shell Configuration"
+
 brewui 'bash'
 brewui 'bash-completion'
 

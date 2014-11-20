@@ -4,6 +4,8 @@
 ## Node Setup ##
 ################
 
+hlog "Configuring Node"
+
 # TODO: Get the latest version dynamically
 node_version="0.10"
 

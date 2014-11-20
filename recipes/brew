@@ -4,6 +4,8 @@
 ## Homebrew Setup ##
 ####################
 
+hlog "Installing Everything Dev"
+
 # Update formulae
 log 'updating homebrew formulae'
 brew update

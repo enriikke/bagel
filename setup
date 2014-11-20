@@ -76,10 +76,10 @@ read -p "$pause"
 
 
 # Ask for the administrator password upfront
-# sudo -v
+sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until finished
-# while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Kill execution if something goes wrong. TODO: exit more gracefully.
 # trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
@@ -104,7 +104,7 @@ source ./recipes/node
 source ./recipes/python
 source ./recipes/cask
 source ./recipes/osx
-source ./recipes/dots
+# source ./recipes/dots
 
 # We are done!
 printf "\n\n%s\n" "$finished"
