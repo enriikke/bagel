@@ -104,7 +104,7 @@ source ./recipes/node
 source ./recipes/python
 source ./recipes/cask
 source ./recipes/osx
-# source ./recipes/dots
+source ./recipes/dots
 
 # We are done!
 printf "\n\n%s\n" "$finished"
