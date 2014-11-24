@@ -18,3 +18,6 @@ nvm install "$node_version"
 
 log "setting node $node_version as the global default"
 nvm alias default "$node_version"
+
+log "installing bower"
+npm install -g bower
