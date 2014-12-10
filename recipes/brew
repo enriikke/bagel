@@ -29,6 +29,7 @@ brewui 'reattach-to-user-namespace'
 brewui 'imagemagick' --with-webp
 brewui 'qt'
 brewui 'watch'
+brewui 'tree'
 
 # OpenSSL unlink and link to avoid conflicts with Homebrew
 brewui 'openssl'
