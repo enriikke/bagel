@@ -11,6 +11,9 @@ brew tap caskroom/cask
 brew install brew-cask
 brew tap caskroom/versions
 
+# Dev Stuff
+caski java
+
 # Browsers
 caski google-chrome
 caski google-chrome-canary
