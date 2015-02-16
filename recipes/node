@@ -5,7 +5,7 @@
 hlog "Configuring Node"
 
 # TODO: Get the latest version dynamically
-node_version="0.10"
+node_version="0.12"
 
 # brew install node
 brewui 'nvm'

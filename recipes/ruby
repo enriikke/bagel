@@ -5,7 +5,7 @@
 hlog "Configuring Ruby"
 
 # TODO: Get the latest version dynamically
-ruby_version="2.1.4"
+ruby_version="2.2.0"
 
 brewui 'rbenv'
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
