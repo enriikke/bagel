@@ -9,7 +9,7 @@ source ~/.zsh/functions.zsh
 source ~/.zsh/history.zsh
 source ~/.zsh/zsh_hooks.zsh
 source ~/.zsh/hitch.zsh
-source ~/.zsh/tmuxinator_completion.zsh
+# source ~/.zsh/tmuxinator_completion.zsh
 
 precmd() {
   if [[ -n "$TMUX" ]]; then
