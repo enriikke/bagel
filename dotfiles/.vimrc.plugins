@@ -58,3 +58,4 @@ VAMActivate github:SirVer/ultisnips
 VAMActivate github:honza/vim-snippets
 VAMActivate github:tomasr/molokai
 VAMActivate github:mattn/gist-vim
+VAMActivate github:gosukiwi/vim-atom-dark

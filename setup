@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # This script is heavily influenced by the laptop project from the great
 # thoughtbot team and the fantastic Mathias Bynens' dot files. Many thanks
@@ -108,4 +108,3 @@ source ./recipes/dots
 
 # We are done!
 printf "\n\n%s\n" "$finished"
-
