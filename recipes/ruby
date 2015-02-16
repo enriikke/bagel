@@ -50,3 +50,5 @@ gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/
 log "installing hcl (harvest command line)"
 gem install hcl
 
+log "installing tmuxinator gem"
+gem install tmuxinator
