@@ -57,9 +57,7 @@ set background=dark
 set t_Co=256 " 256 colors in terminal
 
 " Color scheme
-let g:molokai_original=1
-let g:rehash256=1
-colorscheme molokai
+colorscheme atom-dark-256
 
 " highlight the 81st column
 set colorcolumn=+1

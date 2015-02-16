@@ -1,22 +1,20 @@
-#!/usr/bin/env bash
-
 #################
 ## Shell Setup ##
 #################
 
 hlog "Shell Configuration"
 
-brewui 'bash'
-brewui 'bash-completion'
+brewui 'zsh'
+brewui 'zsh-completions'
 
 # Add the new bash shell to the allowed shells list
-if ! grep $(which bash) /etc/shells; then
-  log 'adding bash to /etc/shells'
-  printf "%s\n" "$(which bash)" | sudo tee -a /etc/shells
+if ! grep $(which zsh) /etc/shells; then
+  log 'adding zsh to /etc/shells'
+  printf "%s\n" "$(which zsh)" | sudo tee -a /etc/shells
 fi
 
 # Change the default shell
-if [[ "$SHELL" != $(which bash) ]]; then
-  log 'changing shell to bash'
-  chsh -s $(which bash)
+if [[ "$SHELL" != $(which zsh) ]]; then
+  log 'changing shell to zsh'
+  chsh -s $(which zsh)
 fi
