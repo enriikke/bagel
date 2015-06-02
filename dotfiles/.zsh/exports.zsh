@@ -28,3 +28,6 @@ eval "$(rbenv init -)"
 # node configuration
 export PATH="$PATH:/usr/local/lib/node_modules"
 source $(brew --prefix nvm)/nvm.sh
+
+# Docker env vars
+$(boot2docker shellinit 2> /dev/null)

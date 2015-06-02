@@ -34,7 +34,7 @@ set number                                                " show absolute line n
 set scrolloff=10                                          " scroll the window so we can always see 10 lines around the cursor
 set textwidth=80                                          " wrap at 80 characters like a valid human
 set cursorline                                            " highlight the current line
-set cursorcolumn                                          " highlight the current column
+" set cursorcolumn                                          " highlight the current column
 set printoptions=paper:letter                             " use letter as the print output format
 set guioptions-=T                                         " turn off GUI toolbar (icons)
 set guioptions-=r                                         " turn off GUI right scrollbar
@@ -94,7 +94,7 @@ noremap <Leader>gb :Gblame<cr>
 " NERDTree
 let NERDTreeWinPos='left'
 let NERDTreeShowHidden=1
-noremap <c-\> :NERDTreeToggle<cr>
+noremap <c-n> :NERDTreeToggle<cr>
 noremap <Leader>nf :NERDTreeFind<cr>
 
 " EasyMotion

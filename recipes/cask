@@ -34,8 +34,7 @@ caski screenhero
 caski skype
 caski caffeine
 caski adobe-reader
-
-# brew cask install boot2docker
+caski boot2docker
 
 # Fun
 caski spotify
