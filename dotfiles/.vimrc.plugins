@@ -60,3 +60,4 @@ VAMActivate github:tomasr/molokai
 VAMActivate github:mattn/gist-vim
 VAMActivate github:gosukiwi/vim-atom-dark
 VAMActivate github:christoomey/vim-tmux-navigator
+VAMActivate github:majutsushi/tagbar
