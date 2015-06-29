@@ -8,7 +8,7 @@ hlog "Configuring Node"
 node_version="0.12"
 
 # brew install node
-brewui 'nvm'
+brewui "nvm"
 source $(brew --prefix nvm)/nvm.sh
 
 log "installing Node $node_version"
@@ -17,5 +17,11 @@ nvm install "$node_version"
 log "setting node $node_version as the global default"
 nvm alias default "$node_version"
 
+log "installing npm"
+brewui "npm"
+
 log "installing bower"
 npm install -g bower
+
+log "installing yeoman"
+npm install -g yo

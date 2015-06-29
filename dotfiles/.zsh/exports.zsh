@@ -15,7 +15,6 @@ export ARCHFLAGS='-arch x86_64'
 
 export LESS='--ignore-case --raw-control-chars'
 export PAGER='most'
-export NODE_PATH=/opt/boxen/nodenv/versions/v0.10/lib
 export EDITOR='vim'
 export PYTHONPATH=/usr/local/lib/python2.6/site-packages
 # CTAGS Sorting in VIM/Emacs is better behaved with this in place
@@ -26,7 +25,8 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 # node configuration
-export PATH="$PATH:/usr/local/lib/node_modules"
+export PATH="$PATH:$(npm root -g)"
+export NODE_PATH="$NODE_PATH:$(npm root -g)"
 source $(brew --prefix nvm)/nvm.sh
 
 # Docker env vars
