@@ -57,6 +57,7 @@ VAMActivate github:pbrisbin/vim-mkdir
 VAMActivate github:SirVer/ultisnips
 VAMActivate github:honza/vim-snippets
 VAMActivate github:tomasr/molokai
+VAMActivate github:mattn/webapi-vim
 VAMActivate github:mattn/gist-vim
 VAMActivate github:gosukiwi/vim-atom-dark
 VAMActivate github:christoomey/vim-tmux-navigator
