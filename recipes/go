@@ -4,7 +4,7 @@
 
 hlog "Configuring Go"
 
-brewui 'go'
+brewui 'go' --with-cc-all
 
 hlog "Setting up Go workspace"
 
