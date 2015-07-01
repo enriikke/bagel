@@ -1,0 +1,22 @@
+##############
+## Go Setup ##
+##############
+
+hlog "Configuring Go"
+
+brewui 'go'
+
+hlog "Setting up Go workspace"
+
+mkdir -p ~/Projects/go/bin
+mkdir ~/Projects/go/src
+mkdir ~/Projects/go/pkg
+
+
+hlog "Exporting Go env vars"
+
+echo '\n# go configuration' >> ~/.zsh/exports.zsh
+echo "export GOROOT=$(which go)" >> ~/.zsh/exports.zsh
+echo 'export PATH=$PATH:$GOROOT/bin' >> ~/.zsh/exports.zsh
+echo 'export GOPATH=~/Projects/go' >> ~/.zsh/exports.zsh
+echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.zsh/exports.zsh

@@ -100,6 +100,7 @@ source ./recipes/bootstrap
 source ./recipes/shell
 source ./recipes/brew
 source ./recipes/ruby
+source ./recipes/go
 source ./recipes/node
 source ./recipes/python
 source ./recipes/cask
