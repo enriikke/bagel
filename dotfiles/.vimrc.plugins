@@ -63,3 +63,4 @@ VAMActivate github:gosukiwi/vim-atom-dark
 VAMActivate github:christoomey/vim-tmux-navigator
 VAMActivate github:majutsushi/tagbar
 VAMActivate github:fatih/vim-go
+VAMActivate github:vitalk/vim-simple-todo
