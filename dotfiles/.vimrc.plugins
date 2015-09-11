@@ -28,7 +28,7 @@ VAMActivate github:Lokaltog/vim-easymotion
 VAMActivate github:scrooloose/syntastic
 VAMActivate github:godlygeek/tabular
 VAMActivate github:Valloric/YouCompleteMe
-VAMActivate github:kien/ctrlp.vim
+VAMActivate github:ctrlpvim/ctrlp.vim
 VAMActivate github:Raimondi/delimitMate
 VAMActivate github:tpope/vim-fugitive
 VAMActivate github:ekalinin/Dockerfile.vim
