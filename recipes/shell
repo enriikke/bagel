@@ -1,15 +1,14 @@
-#################
-## Shell Setup ##
-#################
+################################################################################
+#                                 Shell Setup                                  #
+################################################################################
 
-hlog "Shell Configuration"
+header_log "Zsh Setup"
 
-brewui 'zsh'
-brewui 'zsh-completions'
+brew_upgrade_or_install "zsh"
 
-# Add the new bash shell to the allowed shells list
+# Add the new zsh shell to the allowed shells list
 if ! grep $(which zsh) /etc/shells; then
-  log 'adding zsh to /etc/shells'
+  log "adding zsh to /etc/shells"
   printf "%s\n" "$(which zsh)" | sudo tee -a /etc/shells
 fi
 
@@ -18,3 +17,6 @@ if [[ "$SHELL" != $(which zsh) ]]; then
   log 'changing shell to zsh'
   chsh -s $(which zsh)
 fi
+
+# Use antigen as a plugin manager for zsh
+brew_upgrade_or_install "antigen"

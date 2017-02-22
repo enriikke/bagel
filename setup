@@ -35,6 +35,7 @@ eat a bagel - don't forget to add cream cheese!
 
 pause="
 Ready to roll? Smash any key and let the magic begin.
+(CTRL+C to stop)
 "
 
 finished="
@@ -49,13 +50,13 @@ Oh no!! It looks like something failed. Checkout the
 errors below and try running bagel again.
 "
 
-function hlog {
+function header_log {
   printf "\n${hcolor}$1${normal}\n"
   printf "=%.s" {1..55}
   printf "\n\n"
 }
 
-function elog {
+function error_log {
   printf "${ecolor}$1${normal}\n"
 }
 
@@ -66,6 +67,38 @@ function log {
 function clean {
   printf "${ecolor}$chaos${normal}\n"
   printf "$@"
+}
+
+function expand_alias {
+  brew info "$1" 2>/dev/null | head -1 | awk '{gsub(/:/, ""); print $1}'
+}
+
+function is_installed {
+  local name="$(expand_alias "$1")"
+  brew list -1 | grep -Fqx "$name"
+}
+
+function is_upgradable {
+  local name="$(expand_alias "$1")"
+  brew outdated --quiet "$name" >/dev/null
+  [[ $? -ne 0 ]]
+}
+
+function brew_upgrade_or_install {
+  if is_installed "$1"; then
+    if is_upgradable "$1"; then
+      log "upgrading $1"
+      brew upgrade "$@"
+    fi
+  else
+    log "installing $1"
+    brew install "$@"
+  fi
+}
+
+function cask_install {
+  log "installing $1"
+  brew cask install "$@"
 }
 
 
@@ -87,25 +120,34 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 
 # Before doing anything else update bagel
-hlog "Update Bagel"
+header_log "Update Bagel"
 log "bagel is updating itself to the latest release"
-log "trying not to take over human kind"
+log "trying not to take over human kind\n"
 cd "$(dirname "${BASH_SOURCE}")"
 git pull origin master
-log "moving on"
+log "\nmoving on"
+
+
+# Make sure homebrew is installed
+header_log "Bootstrapping"
+if ! command -v brew >/dev/null; then
+  log "installing homebrew"
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  export PATH="/usr/local/bin:$PATH"
+else
+  log "homebrew is already installed"
+fi
 
 # Run all of the bagel recipes
-source ./recipes/utils
-source ./recipes/bootstrap
+# source ./recipes/dots
 source ./recipes/shell
-source ./recipes/dots
 source ./recipes/brew
+source ./recipes/cask
 source ./recipes/ruby
 source ./recipes/go
-source ./recipes/node
 source ./recipes/python
-source ./recipes/cask
-source ./recipes/osx
+# source ./recipes/node
+# source ./recipes/osx
 
 # We are done!
 printf "\n\n%s\n" "$finished"

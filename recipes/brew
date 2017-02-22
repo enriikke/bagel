@@ -1,52 +1,30 @@
-####################
-## Homebrew Setup ##
-####################
+################################################################################
+#                               Homebrew Setup                                 #
+################################################################################
 
-hlog "Installing Everything Dev"
+header_log "Development Tools"
 
-# Update formulae
-log 'updating homebrew formulae'
+log "updating homebrew formulae"
 brew update
 
-# Upgrade installed formulae
-log 'upgrading homebrew installed packages'
+log "upgrading homebrew installed packages"
 brew upgrade
 
-# Git and GitHub add-ons
-brewui 'git'
-brewui 'hub'
-
-# Dev utilities
-brewui 'redis'
-# brewui 'postgres' # Using PostgresApp instead
-brewui 'the_silver_searcher'
-brewui 'vim' --override-system-vi
-brewui 'ctags'
-brewui 'tmux'
-brewui 'reattach-to-user-namespace'
-brewui 'imagemagick' --with-webp
-brewui 'qt'
-brewui 'watch'
-brewui 'tree'
-
 # OpenSSL unlink and link to avoid conflicts with Homebrew
-brewui 'openssl'
+brew_upgrade_or_install "openssl"
 brew unlink openssl && brew link openssl --force
 
-# Install Heroku CLI and extra utitlites
-brewui 'heroku-toolbelt'
-heroku plugins:install https://github.com/ddollar/heroku-config.git
+# Tmux
+brew_upgrade_or_install "tmux"
+brew_upgrade_or_install "reattach-to-user-namespace"
 
-# More nice utitlities
-brewui 'libidn'
-brewui 'wget' --with-iri
-brewui 'ringojs'
-brewui 'narwhal'
-brewui 'webkit2png'
-brewui 'rename'
-brewui 'rhino'
-brewui 'cmake'
+# Nice utitlities
+brew_upgrade_or_install "git"
+brew_upgrade_or_install "tree"
+brew_upgrade_or_install "wget" --with-iri
+brew_upgrade_or_install "webkit2png"
+brew_upgrade_or_install "rename"
+brew_upgrade_or_install "imagemagick" --with-webp
 
-# Remove outdated packages
-log 'removing outdated packages'
+log "removing outdated packages"
 brew cleanup

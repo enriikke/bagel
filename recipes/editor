@@ -1,0 +1,15 @@
+##################
+## Neovim Setup ##
+##################
+
+header_log "Configuring Editor"
+
+brew_upgrade_or_install 'neovim/neovim/neovim'
+
+
+brew_upgrade_or_install 'ctags'
+
+brew_upgrade_or_install 'ripgrep'
+
+pip2 install neovim
+pip2 install neovim

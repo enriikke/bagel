@@ -3,22 +3,21 @@ call plug#begin('~/.config/nvim/plugged')
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "                                   Colors
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  Plug 'gosukiwi/vim-atom-dark'
-  Plug 'joshdick/onedark.vim'
-
   Plug 'arcticicestudio/nord-vim'
-  Plug 'jacoborus/tender.vim'
-  Plug 'muellan/am-colors'
-  Plug 'altercation/vim-colors-solarized'
 
-  Plug 'joshdick/airline-onedark.vim'
+  " Other colors I like
+  " Plug 'gosukiwi/vim-atom-dark'
+  " Plug 'joshdick/onedark.vim'
+  " Plug 'jacoborus/tender.vim'
+  " Plug 'muellan/am-colors'
+  " Plug 'altercation/vim-colors-solarized'
+  " Plug 'joshdick/airline-onedark.vim'
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "                                  Utilities
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'easymotion/vim-easymotion'
-  " Plug 'benekastah/neomake'
+  Plug 'neomake/neomake'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
@@ -31,8 +30,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'Raimondi/delimitMate'
   Plug 'vim-scripts/tComment'
-  " Plug 'bling/vim-airline'
   Plug 'itchyny/lightline.vim'
+  Plug 'junegunn/fzf', { 'dir': '~/.config/fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
 
   Plug 'sickill/vim-pasta'
   Plug 'christoomey/vim-run-interactive'
@@ -48,9 +48,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
   Plug 'tpope/vim-bundler', { 'for': 'ruby' }
   Plug 'tpope/vim-rails', { 'for': 'ruby' }
-  " Plug 'tpope/vim-endwise', { 'for': 'ruby' }
   Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
-  " Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "                                    Go

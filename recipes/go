@@ -1,21 +1,12 @@
-##############
-## Go Setup ##
-##############
+################################################################################
+#                                   Go Setup                                   #
+################################################################################
 
-hlog "Configuring Go"
+header_log "Go Setup"
 
-brewui 'go' --with-cc-all
+brew_upgrade_or_install "go" --with-cc-all
 
-hlog "Setting up Go workspace"
-
+log "creating GOPATH directory in ~/Projects/go"
 mkdir -p ~/Projects/go/bin
 mkdir ~/Projects/go/src
 mkdir ~/Projects/go/pkg
-
-
-hlog "Exporting Go env vars"
-
-echo '\n# go configuration' >> ~/.zsh/exports.zsh
-echo 'export GOPATH=~/Projects/go' >> ~/.zsh/exports.zsh
-echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.zsh/exports.zsh
-echo 'export PATH=$PATH:/usr/local/opt/go/libexec/bin' >> ~/.zsh/exports.zsh

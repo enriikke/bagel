@@ -1,3 +1,7 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               LightLine Appearance
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ 'separator': { 'left': '', 'right': '' },
@@ -13,6 +17,20 @@ let g:lightline = {
       \   'mode': 'LightlineMode'
       \ }
       \ }
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   Behavior
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
+let g:vimshell_force_overwrite_statusline = 0
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   Helpers
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function! LightlineModified()
   return &ft =~ 'help' ? '' : &modified ? '[+]' : &modifiable ? '' : '[-]'
@@ -63,7 +81,3 @@ function! LightlineMode()
         \ &ft == 'vimshell' ? 'VimShell' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
-
-let g:unite_force_overwrite_statusline = 0
-let g:vimfiler_force_overwrite_statusline = 0
-let g:vimshell_force_overwrite_statusline = 0

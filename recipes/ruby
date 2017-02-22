@@ -1,19 +1,15 @@
-################
-## Ruby Setup ##
-################
+################################################################################
+#                                 Ruby Setup                                   #
+################################################################################
 
-hlog "Configuring Ruby"
+header_log "Ruby Setup"
 
-# TODO: Get the latest version dynamically
-ruby_version="2.2.0"
-
-brewui 'rbenv'
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
-echo 'eval "$(rbenv init -)"' >> ~/.zshrc
+brew_upgrade_or_install "rbenv"
 eval "$(rbenv init -)"
 
-brewui 'rbenv-gem-rehash'
-brewui 'ruby-build'
+# Get latest version of ruby avilable
+ruby_version=$(rbenv install --list | grep -vE "(^Available versions:|dev|preview|rc)" | grep -E "^\s*[0-9]" | sed 's/^\s\+//' | tail -1 | tr -d "[:space:]")
+[[ -z $ruby_version ]] && ruby_version="2.3.0"
 
 log "installing Ruby $ruby_version"
 rbenv install -s "$ruby_version"
@@ -22,33 +18,18 @@ log "setting ruby $ruby_version as the global default"
 rbenv global "$ruby_version"
 rbenv rehash
 
-
-#######################
-## Nice-To-Have Gems ##
-#######################
-
+# Nice-To-Have Gems
 log "updating to the latests rubygems version"
 gem update --system
 
 log "installing bundler"
-gem install bundler --no-document
-
-log "configuring bundler"
+gem install bundler
 number_of_cores=$(sysctl -n hw.ncpu)
 bundle config --global jobs $((number_of_cores - 1))
 
-log "installing rails"
-gem install rails --no-document
-
-log "installing parity"
-gem install parity --no-document
-
-log "configuring postgres gem"
-bundle config build.pg --with-pg-config=/Applications/Postgres.app/Contents/Versions/9.3/bin/pg_config
-gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/9.3/bin/pg_config
-
-log "installing hcl (harvest command line)"
-gem install hcl
+log "installing postgres gem"
+bundle config build.pg --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config
+gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config
 
 log "installing tmuxinator gem"
 gem install tmuxinator

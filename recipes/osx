@@ -1,4 +1,4 @@
-hlog "OSX Defaults"
+header_log "OSX Defaults"
 
 ###############################################################################
 # General UI/UX                                                               #

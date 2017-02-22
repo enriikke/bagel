@@ -31,3 +31,13 @@ source $(brew --prefix nvm)/nvm.sh
 
 # Docker env vars
 $(boot2docker shellinit 2> /dev/null)
+
+# hlog "Exporting Go env vars"
+#
+# echo '\n# go configuration' >> ~/.zsh/exports.zsh
+# echo 'export GOPATH=~/Projects/go' >> ~/.zsh/exports.zsh
+# echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.zsh/exports.zsh
+# echo 'export PATH=$PATH:/usr/local/opt/go/libexec/bin' >> ~/.zsh/exports.zsh
+#
+# echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
+# echo 'eval "$(rbenv init -)"' >> ~/.zshrc

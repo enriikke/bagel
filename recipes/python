@@ -1,5 +1,8 @@
-##################
-## Python Setup ##
-##################
+################################################################################
+#                                 Python Setup                                 #
+################################################################################
 
-# TODO: configure python
+header_log "Python Setup"
+
+brew_upgrade_or_install "python"
+brew_upgrade_or_install "python3"

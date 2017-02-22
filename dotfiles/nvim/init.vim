@@ -92,23 +92,16 @@ set t_Co=256 " 256 colors in terminal
 let g:rehash256 = 1
 
 " color scheme
-" colorscheme atom-dark-256
 colorscheme nord
-
 
 " highlight the 81st column
 set colorcolumn=+1
 
-" Airline (https://github.com/vim-airline/vim-airline)
-" let g:airline_powerline_fonts=1
-" let g:airline_left_sep=''
-" let g:airline_right_sep=''
-" let g:airline_theme='nord'
-"
 " lightline (https://github.com/itchyny/lightline.vim)
 if filereadable(expand('~/.config/nvim/lightline.vim'))
   source ~/.config/nvim/lightline.vim
 endif
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Mappings
@@ -156,7 +149,7 @@ noremap <Leader>= yypVr=
 " clear latest search pattern
 nnore <esc><esc> :let @/ = ""<cr>
 
-" get off my lawn
+" just use vim key bindings
 nnoremap <Left> :echoe "use h"<CR>
 nnoremap <Right> :echoe "use l"<CR>
 nnoremap <Up> :echoe "use k"<CR>
@@ -192,19 +185,17 @@ noremap <leader>k :NERDTreeToggle<cr>
 noremap <leader>nf :NERDTreeFind<cr>
 
 " EasyMotion (https://github.com/easymotion/vim-easymotion)
-nmap <space> <Plug>(easymotion-s)
+nmap <space> <Plug>(easymotion-s2)
 
-" ctrlp (https://github.com/ctrlpvim/ctrlp.vim)
-let g:ctrlp_dotfiles=1
-let g:ctrlp_max_files = 0
+" fzf (https://github.com/junegunn/fzf.vim)
+let g:fzf_command_prefix = 'Fzf'
+nmap <C-p> :FzfFiles<cr>
+nmap <C-m> :FzfBLines<cr>
 
 " Deoplete (https://github.com/Shougo/deoplete.nvim)
 let g:deoplete#enable_at_startup = 1
 imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 imap <expr><CR> pumvisible() && neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : "\<CR>"
-
-" Tagbar (https://github.com/majutsushi/tagbar)
-noremap <c-m> :TagbarToggle<cr>
 
 " Gists (https://github.com/mattn/gist-vim)
 let g:gist_post_private = 1
@@ -239,7 +230,6 @@ au FileType go nmap <leader>i <Plug>(go-info)
 au FileType go nmap <leader>l <Plug>(go-metalinter)
 au FileType go nmap <leader>v <Plug>(go-def-vertical)
 au FileType go nmap <leader>a :GoAddTags<CR>
-
 
 au Filetype go command! -bang GA call go#alternate#Switch(<bang>0, 'edit')
 au Filetype go command! -bang GAV call go#alternate#Switch(<bang>0, 'vsplit')

@@ -1,40 +1,17 @@
-################
-## Cask Setup ##
-################
+################################################################################
+#                                 Cask Setup                                   #
+################################################################################
 
-hlog "Installing Applications"
+header_log "Applications"
 
-log 'installing cask'
+log "installing cask"
 brew tap caskroom/cask
-brew install brew-cask
-brew tap caskroom/versions
+brew_upgrade_or_install "brew-cask"
 
-# Dev Stuff
-caski java
-
-# Browsers
-caski google-chrome
-caski google-chrome-canary
-caski firefox
-caski firefoxdeveloperedition
-caski opera
-
-# Editors
-caski atom
-
-# Utilities
-caski iterm2
-caski postgres
-caski dropbox
-caski evernote
-caski slack
-caski mailbox
-caski pgadmin3
-caski screenhero
-caski skype
-caski caffeine
-caski adobe-reader
-caski boot2docker
-
-# Fun
-caski spotify
+cask_install "iterm2"
+cask_install "postgres"
+cask_install "pgadmin3"
+cask_install "docker"
+cask_install "google-chrome"
+cask_install "spotify"
+cask_install "adobe-reader"
