@@ -9,6 +9,7 @@ log "installing cask"
 brew tap caskroom/cask
 
 cask_install "iterm2"
+cask_install "ngrok"
 cask_install "postgres"
 cask_install "pgadmin4"
 cask_install "docker"
