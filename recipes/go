@@ -1,6 +1,7 @@
-################################################################################
-#                                   Go Setup                                   #
-################################################################################
+#!/bin/sh
+
+# Go Setup
+# Install the latest version of go and set the GOPATH directory
 
 header_log "Go Setup"
 

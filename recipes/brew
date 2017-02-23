@@ -1,6 +1,7 @@
-################################################################################
-#                               Homebrew Setup                                 #
-################################################################################
+#!/bin/sh
+
+# Homebrew Setup
+# Install useful development tools with homebrew
 
 header_log "Development Tools"
 

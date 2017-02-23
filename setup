@@ -139,15 +139,15 @@ else
 fi
 
 # Run all of the bagel recipes
-# source ./recipes/dots
 source ./recipes/shell
 source ./recipes/brew
 source ./recipes/cask
 source ./recipes/ruby
 source ./recipes/go
 source ./recipes/python
-# source ./recipes/node
-# source ./recipes/osx
+source ./recipes/editor
+source ./recipes/macos
+source ./recipes/dots
 
 # We are done!
 printf "\n\n%s\n" "$finished"

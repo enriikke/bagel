@@ -1,14 +1,26 @@
+#!/bin/sh
+
 header_log "Dot Files"
 
-###############
-## Dot Files ##
-###############
+log "creating config directories"
+mkdir -p ~/.config/nvim
+mkdir ~/.config/zsh
 
-log "copying dot files to home directory"
-function moveDots() {
-	rsync -avh --no-perms ./dotfiles/ ~;
-	# source ~/.bash_profile;
-}
+log "copying nvim dotfiles"
+ln -s ./dotfiles/nvim/init.vim ~/.config/nvim/init.vim
+ln -s ./dotfiles/nvim/plugins.vim ~/.config/nvim/plugins.vim
+ln -s ./dotfiles/nvim/lightline.vim ~/.config/nvim/lightline.vim
 
-moveDots;
-unset moveDots;
+log "copying zsh dotfiles"
+ln -s ./dotfiles/zsh/init.zsh ~/.config/zsh/init.zsh
+ln -s ./dotfiles/zsh/exports.zsh ~/.config/zsh/exports.zsh
+ln -s ./dotfiles/zsh/aliases.zsh ~/.config/zsh/aliases.zsh
+
+log "copying root dotfiles"
+ln -s ./dotfiles/.zshrc ~/.zshrc
+ln -s ./dotfiles/.tmux.conf ~/.tmux.conf
+ln -s ./dotfiles/.gitconfig ~/.gitconfig
+ln -s ./dotfiles/.gitignore ~/.gitignore
+
+log "sourcing zsh config"
+source ~/.zshrc

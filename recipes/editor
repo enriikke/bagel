@@ -1,15 +1,24 @@
-##################
-## Neovim Setup ##
-##################
+#!/bin/sh
+
+# Editor Setup
+# Install Neovim and all plugin dependencies
 
 header_log "Configuring Editor"
 
-brew_upgrade_or_install 'neovim/neovim/neovim'
+brew_upgrade_or_install "neovim/neovim/neovim"
 
-
-brew_upgrade_or_install 'ctags'
-
-brew_upgrade_or_install 'ripgrep'
-
+# Completion plugin Deoplete dependencies
+log "installing neovim python clients"
 pip2 install neovim
 pip2 install neovim
+
+# Tagbar
+brew_upgrade_or_install "ctags"
+
+# An alternatirve of Ag, used for CtrlP
+brew_upgrade_or_install "ripgrep"
+
+# TODO: install vim-plug
+
+log "installing all Neovim plugins"
+nvim +PlugInstall +qall

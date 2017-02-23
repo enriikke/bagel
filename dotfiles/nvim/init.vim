@@ -185,12 +185,19 @@ noremap <leader>k :NERDTreeToggle<cr>
 noremap <leader>nf :NERDTreeFind<cr>
 
 " EasyMotion (https://github.com/easymotion/vim-easymotion)
-nmap <space> <Plug>(easymotion-s2)
+nmap <space> <Plug>(easymotion-s)
 
-" fzf (https://github.com/junegunn/fzf.vim)
-let g:fzf_command_prefix = 'Fzf'
-nmap <C-p> :FzfFiles<cr>
-nmap <C-m> :FzfBLines<cr>
+" CtrlP (https://github.com/ctrlpvim/ctrlp.vim)
+let g:ctrlp_dotfiles=1
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
+
+" Neomake (https://github.com/neomake/neomake)
+autocmd! BufWritePost * Neomake
+let g:neomake_ruby_enabled_makers = ['rubocop']
 
 " Deoplete (https://github.com/Shougo/deoplete.nvim)
 let g:deoplete#enable_at_startup = 1
@@ -202,6 +209,9 @@ let g:gist_post_private = 1
 
 " vim-run-interactive (https://github.com/christoomey/vim-run-interactive)
 nnoremap <Leader>ri :RunInInteractiveShell<space>
+
+" Tagbar (https://github.com/majutsushi/tagbar)
+noremap <c-m> :TagbarToggle<cr>
 
 " vim-go (https://github.com/fatih/vim-go)
 let g:go_fmt_command = "goimports"

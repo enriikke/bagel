@@ -31,8 +31,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'Raimondi/delimitMate'
   Plug 'vim-scripts/tComment'
   Plug 'itchyny/lightline.vim'
-  Plug 'junegunn/fzf', { 'dir': '~/.config/fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
+  Plug 'ctrlpvim/ctrlp.vim'
 
   Plug 'sickill/vim-pasta'
   Plug 'christoomey/vim-run-interactive'

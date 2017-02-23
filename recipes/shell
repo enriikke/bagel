@@ -1,6 +1,7 @@
-################################################################################
-#                                 Shell Setup                                  #
-################################################################################
+#!/bin/sh
+
+# Shell Setup
+# Configure the shell to use Zsh by default
 
 header_log "Zsh Setup"
 
@@ -14,7 +15,7 @@ fi
 
 # Change the default shell
 if [[ "$SHELL" != $(which zsh) ]]; then
-  log 'changing shell to zsh'
+  log "changing shell to zsh"
   chsh -s $(which zsh)
 fi
 

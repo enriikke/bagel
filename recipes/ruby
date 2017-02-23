@@ -1,6 +1,8 @@
-################################################################################
-#                                 Ruby Setup                                   #
-################################################################################
+#!/bin/sh
+
+# Ruby Setup
+# Install rbenv and use it to manage ruby versions
+# Then install the latest version of ruby and useful gems
 
 header_log "Ruby Setup"
 
