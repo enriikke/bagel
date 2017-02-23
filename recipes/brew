@@ -11,10 +11,6 @@ brew update
 log "upgrading homebrew installed packages"
 brew upgrade
 
-# OpenSSL unlink and link to avoid conflicts with Homebrew
-brew_upgrade_or_install "openssl"
-brew unlink openssl && brew link openssl --force
-
 # Tmux
 brew_upgrade_or_install "tmux"
 brew_upgrade_or_install "reattach-to-user-namespace"

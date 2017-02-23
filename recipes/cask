@@ -7,11 +7,10 @@ header_log "Applications"
 
 log "installing cask"
 brew tap caskroom/cask
-brew_upgrade_or_install "brew-cask"
 
 cask_install "iterm2"
 cask_install "postgres"
-cask_install "pgadmin3"
+cask_install "pgadmin4"
 cask_install "docker"
 cask_install "google-chrome"
 cask_install "spotify"
