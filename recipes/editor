@@ -18,7 +18,17 @@ brew_upgrade_or_install "ctags"
 # An alternatirve of Ag, used for CtrlP
 brew_upgrade_or_install "ripgrep"
 
-# TODO: install vim-plug
+log "installing vim-plug"
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 log "installing all Neovim plugins"
 nvim +PlugInstall +qall
+
+log "installing Go Binaries for vim-go"
+nvim +GoInstallBinaries +qall
+
+log "installing editor/terminal fonts"
+brew tap caskroom/fonts
+brew cask install font-droid-sans-mono
+brew cask install font-droid-sans-mono-for-powerline
