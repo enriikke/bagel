@@ -24,3 +24,6 @@ ln -s ./dotfiles/.gitignore ~/.gitignore
 
 log "sourcing zsh config"
 source ~/.zshrc
+
+log "copying rbenv dotfiles"
+ln -s ./dotfiles/rbenv/default-gems "$(rbenv root)/default-gems"
