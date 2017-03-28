@@ -21,3 +21,6 @@ fi
 
 # Use antigen as a plugin manager for zsh
 brew_upgrade_or_install "antigen"
+
+# Plugin dependencies
+pip install thefuck

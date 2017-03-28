@@ -198,6 +198,10 @@ endif
 " Neomake (https://github.com/neomake/neomake)
 autocmd! BufWritePost * Neomake
 let g:neomake_ruby_enabled_makers = ['rubocop']
+" let g:neomake_ruby_rubocop_exe = 'rubocop -c ' . $PWD . '/.rubocop.yml'
+
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_javascript_eslint_exe = $PWD .'/client/node_modules/.bin/eslint'
 
 " Deoplete (https://github.com/Shougo/deoplete.nvim)
 let g:deoplete#enable_at_startup = 1

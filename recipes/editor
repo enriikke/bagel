@@ -5,12 +5,13 @@
 
 header_log "Configuring Editor"
 
+brew tap neovim/neovim
 brew_upgrade_or_install "neovim/neovim/neovim"
 
 # Completion plugin Deoplete dependencies
 log "installing neovim python clients"
 pip2 install neovim
-pip2 install neovim
+pip3 install neovim
 
 # Tagbar
 brew_upgrade_or_install "ctags"
@@ -27,6 +28,9 @@ nvim +PlugInstall +qall
 
 log "installing Go Binaries for vim-go"
 nvim +GoInstallBinaries +qall
+
+log "updating plugins"
+nvim +UpdateRemotePlugins +qall
 
 log "installing editor/terminal fonts"
 brew tap caskroom/fonts

@@ -35,3 +35,9 @@ gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/
 
 log "installing tmuxinator gem"
 gem install tmuxinator
+
+log "installing neovim gem"
+gem install neovim
+
+# Use rbenv plugin to install gems I always want with any Ruby version
+brew_upgrade_or_install "rbenv-default-gems"
