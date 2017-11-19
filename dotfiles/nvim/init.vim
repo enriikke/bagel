@@ -196,17 +196,32 @@ if executable('rg')
 endif
 
 " Neomake (https://github.com/neomake/neomake)
-autocmd! BufWritePost * Neomake
-let g:neomake_ruby_enabled_makers = ['rubocop']
-" let g:neomake_ruby_rubocop_exe = 'rubocop -c ' . $PWD . '/.rubocop.yml'
+" autocmd! BufWritePost * Neomake
+" let g:neomake_ruby_enabled_makers = ['rubocop']
+" let g:neomake_javascript_enabled_makers = ['eslint']
+" let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
 
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_javascript_eslint_exe = $PWD .'/client/node_modules/.bin/eslint'
+" Neoformat (https://github.com/sbdchd/neoformat)
+" autocmd! BufWritePre * Neoformat
+" let g:neoformat_enabled_javascript = ['prettier', 'eslint']
+" let g:neoformat_javascript_prettier = {
+"             \ 'exe': $PWD .'/node_modules/.bin/prettier',
+"             \ 'args': ['--single-quote', '--print-width=120', '--parser=flow', '--tab-width=2'],
+"             \ }
+"
+" let g:neoformat_javascript_eslint = {
+"             \ 'exe': $PWD .'/node_modules/.bin/eslint',
+"             \ 'args': ['--fix'],
+"             \ }
+"
 
 " Deoplete (https://github.com/Shougo/deoplete.nvim)
 let g:deoplete#enable_at_startup = 1
 imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 imap <expr><CR> pumvisible() && neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : "\<CR>"
+
+" neosnippet (https://github.com/Shougo/neosnippet.vim)
+let g:neosnippet#enable_completed_snippet = 1
 
 " Gists (https://github.com/mattn/gist-vim)
 let g:gist_post_private = 1
@@ -220,7 +235,10 @@ noremap <c-m> :TagbarToggle<cr>
 " vim-go (https://github.com/fatih/vim-go)
 let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
+let g:go_snippet_engine = "neosnippet"
 let g:go_autodetect_gopath = 1
+let g:go_auto_sameids = 1
+let g:go_auto_type_info = 1
 
 let g:go_highlight_types = 1
 let g:go_highlight_structs = 1
@@ -231,6 +249,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_generate_tags = 1
 let g:go_highlight_build_constraints = 1
+
 
 au FileType go nmap <C-g> :GoDeclsDir<cr>
 au FileType imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
@@ -249,3 +268,27 @@ au Filetype go command! -bang GA call go#alternate#Switch(<bang>0, 'edit')
 au Filetype go command! -bang GAV call go#alternate#Switch(<bang>0, 'vsplit')
 au Filetype go command! -bang GAS call go#alternate#Switch(<bang>0, 'split')
 au Filetype go command! -bang GAT call go#alternate#Switch(<bang>0, 'tabe')
+
+" vim-javascript (https://github.com/pangloss/vim-javascript)
+let g:javascript_plugin_flow = 1
+
+" ale (https://github.com/w0rp/ale)
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_fix_on_save = 1
+let g:ale_linters = {
+      \ 'ruby': ['rubocop'],
+      \ 'javascript': ['stylelint', 'eslint'],
+      \ 'java': [],
+\}
+
+let g:ale_fixers = {
+      \ 'javascript': ['prettier', 'eslint'],
+      \ 'ruby': ['rubocop'],
+\}
+
+" nmap <silent> <C-e> <Plug>(ale_previous_wrap)
+" nmap <silent> <C-r> <Plug>(ale_next_wrap)
+
+" deoplete-ternjs (https://github.com/carlitux/deoplete-ternjs)
+let g:tern#filetypes = ['javascript', 'jsx', 'javascript.jsx']

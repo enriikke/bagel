@@ -17,13 +17,15 @@ call plug#begin('~/.config/nvim/plugged')
   "                                  Utilities
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   Plug 'easymotion/vim-easymotion'
-  Plug 'neomake/neomake'
+  " Plug 'neomake/neomake'
+  Plug 'w0rp/ale'
+  Plug 'sbdchd/neoformat'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
   Plug 'scrooloose/nerdtree'
   Plug 'bronson/vim-trailing-whitespace'
-  Plug 'Shougo/deoplete.nvim'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Shougo/neosnippet'
   Plug 'Shougo/neosnippet-snippets'
   Plug 'mattn/gist-vim'
@@ -53,12 +55,16 @@ call plug#begin('~/.config/nvim/plugged')
   "                                    Go
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   Plug 'fatih/vim-go', { 'for': 'go' }
+  Plug 'sebdah/vim-delve', { 'for': 'go' }
+  Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "                                 JavaScript
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'jsx'] }
   Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx'] }
+  Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'jsx'], 'do': 'yarn global add tern' }
+  Plug 'wokalski/autocomplete-flow', { 'for': ['javascript', 'jsx'] }
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "                                   HTML
@@ -70,5 +76,6 @@ call plug#begin('~/.config/nvim/plugged')
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   Plug 'vitalk/vim-simple-todo', { 'for': 'markdown' }
   Plug 'ekalinin/Dockerfile.vim'
+  Plug 'jparise/vim-graphql'
 
 call plug#end()
