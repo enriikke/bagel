@@ -5,6 +5,8 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ~="cd ~"
 alias -- -="cd -"
+alias cdgo="cd $GOPATH/src/github.com/enriikke"
+alias cdgosk="cd $GOPATH/src/github.com/Skookum"
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '

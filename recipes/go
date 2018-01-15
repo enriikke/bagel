@@ -11,3 +11,6 @@ log "creating GOPATH directory in ~/Projects/go"
 mkdir -p ~/Projects/go/bin
 mkdir ~/Projects/go/src
 mkdir ~/Projects/go/pkg
+
+log "install some basic dependencies"
+go get -u github.com/nsf/gocode

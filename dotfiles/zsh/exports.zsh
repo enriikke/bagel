@@ -1,5 +1,5 @@
 # Setup terminal, editor, shell, and turn on colors
-export TERM=xterm-256color
+# export TERM=xterm-256color
 export SHELL=$(which zsh)
 export EDITOR="nvim"
 export CLICOLOR=1
@@ -13,6 +13,9 @@ export GREP_COLOR='3;33'
 export GOPATH=$HOME/Projects/go
 export PATH=$PATH:$GOPATH/bin
 
+# Rust vars
+export PATH=$PATH:$HOME/.cargo/bin
+
 # Plugin Vars
 export NVM_LAZY_LOAD=true
 export BUNDLED_COMMANDS=(rubocop)
@@ -22,3 +25,9 @@ export ARCHFLAGS='-arch x86_64'
 export LESS='--ignore-case --raw-control-chars'
 export PAGER='most'
 export LC_COLLATE=C
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/enrique/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/enrique/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/enrique/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/enrique/google-cloud-sdk/completion.zsh.inc'; fi
