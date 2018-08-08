@@ -10,7 +10,7 @@ export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='3;33'
 
 # Go Vars
-export GOPATH=$HOME/Projects/go
+export GOPATH=$HOME/Projects/ongoing/go
 export PATH=$PATH:$GOPATH/bin
 
 # Rust vars
@@ -25,9 +25,3 @@ export ARCHFLAGS='-arch x86_64'
 export LESS='--ignore-case --raw-control-chars'
 export PAGER='most'
 export LC_COLLATE=C
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/enrique/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/enrique/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/enrique/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/enrique/google-cloud-sdk/completion.zsh.inc'; fi
