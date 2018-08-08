@@ -11,7 +11,7 @@ eval "$(rbenv init -)"
 
 # Get latest version of ruby avilable
 ruby_version=$(rbenv install --list | grep -vE "(^Available versions:|dev|preview|rc)" | grep -E "^\s*[0-9]" | sed 's/^\s\+//' | tail -1 | tr -d "[:space:]")
-[[ -z $ruby_version ]] && ruby_version="2.3.0"
+[[ -z $ruby_version ]] && ruby_version="2.5.0"
 
 log "installing Ruby $ruby_version"
 rbenv install -s "$ruby_version"
@@ -28,10 +28,6 @@ log "installing bundler"
 gem install bundler
 number_of_cores=$(sysctl -n hw.ncpu)
 bundle config --global jobs $((number_of_cores - 1))
-
-log "installing postgres gem"
-bundle config build.pg --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config
-gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config
 
 log "installing tmuxinator gem"
 gem install tmuxinator
