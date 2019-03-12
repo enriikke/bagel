@@ -28,3 +28,5 @@ antigen theme theunraveler
 
 # Go wild
 antigen apply
+
+eval $(thefuck --alias)

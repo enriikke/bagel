@@ -3,9 +3,11 @@ call plug#begin('~/.config/nvim/plugged')
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "                                   Colors
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  Plug 'arcticicestudio/nord-vim'
+  " https://trevordmiller.com/projects/nova
+  Plug 'trevordmiller/nova-vim'
 
-  " Other colors I like
+  " other colors I like
+  " Plug 'arcticicestudio/nord-vim'
   " Plug 'gosukiwi/vim-atom-dark'
   " Plug 'joshdick/onedark.vim'
   " Plug 'jacoborus/tender.vim'
@@ -17,9 +19,6 @@ call plug#begin('~/.config/nvim/plugged')
   "                                  Utilities
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   Plug 'easymotion/vim-easymotion'
-  " Plug 'neomake/neomake'
-  Plug 'w0rp/ale'
-  Plug 'sbdchd/neoformat'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
@@ -32,14 +31,29 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'Raimondi/delimitMate'
   Plug 'vim-scripts/tComment'
-  Plug 'itchyny/lightline.vim'
-  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'vim-airline/vim-airline'
 
-  Plug 'sickill/vim-pasta'
+  " Plug 'sheerun/vim-polyglot'
+  Plug 'airblade/vim-rooter'
+  Plug 'tpope/vim-dispatch'
+  Plug 'radenling/vim-dispatch-neovim'
+  Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf.vim'
+  Plug 'tpope/vim-projectionist'
+  Plug 'w0rp/ale'
+  Plug 'mhinz/vim-grepper'
+  Plug 'janko-m/vim-test'
+
+  Plug 'benmills/vimux'
+
+  " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+
+  " Plug 'jeffkreeftmeijer/vim-numbertoggle'
+
+  " Plug 'sickill/vim-pasta'
   Plug 'christoomey/vim-run-interactive'
   Plug 'godlygeek/tabular'
   Plug 'majutsushi/tagbar'
-  Plug 'rking/ag.vim'
   Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
   Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 
@@ -48,15 +62,16 @@ call plug#begin('~/.config/nvim/plugged')
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
   Plug 'tpope/vim-bundler', { 'for': 'ruby' }
-  Plug 'tpope/vim-rails', { 'for': 'ruby' }
+  Plug 'tpope/vim-rails'
   Plug 'tpope/vim-rbenv', { 'for': 'ruby' }
+  Plug 'joker1007/vim-ruby-heredoc-syntax', { 'for': 'ruby' }
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "                                    Go
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-  Plug 'fatih/vim-go', { 'for': 'go' }
-  Plug 'sebdah/vim-delve', { 'for': 'go' }
-  Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
+  Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
+  " Plug 'sebdah/vim-delve', { 'for': 'go' }
+  " Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "                                 JavaScript

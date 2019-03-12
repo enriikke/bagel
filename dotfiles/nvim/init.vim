@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                    NVIM
 "                       https://github.com/Enriikke/bagel
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -56,17 +56,18 @@ set lazyredraw                                            " wait to redraw
 set clipboard+=unnamed,unnamedplus                        " use the system clipboard for yank/put/delete
 " set undofile                                              " enable persitent undo
 " set undodir=./tmp/undo                                    " set undo history dir
-set noshowmode                                            " don't show the current mode since lightline does it
+set noshowmode                                            " don't show the current mode since airline does it
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  Formatting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" use 2 space tabs by default. use 4 for go, c, asm, python
+" use 2 space tabs by default. use 4 for go, c, asm. use spaces not tabs for python
 set shiftwidth=2 tabstop=2 softtabstop=2 expandtab autoindent
-autocmd filetype go,c,asm,python setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
+autocmd filetype go,c,asm setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType make setlocal noexpandtab
+autocmd FileType python setlocal expandtab smarttab shiftwidth=4 tabstop=8 softtabstop=4
 
 " enable spellchecking for Markdown
 autocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -92,15 +93,10 @@ set t_Co=256 " 256 colors in terminal
 let g:rehash256 = 1
 
 " color scheme
-colorscheme nord
+colorscheme nova
 
 " highlight the 81st column
 set colorcolumn=+1
-
-" lightline (https://github.com/itchyny/lightline.vim)
-if filereadable(expand('~/.config/nvim/lightline.vim'))
-  source ~/.config/nvim/lightline.vim
-endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -164,6 +160,10 @@ endif
 " enter automatically into the file's directory
 autocmd BufEnter * silent! lcd %:p:h
 
+" terminal mode mappings
+tnoremap <Esc> <C-\><C-n>
+tnoremap <C-v><Esc> <Esc>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                Plugin Helpers
@@ -187,33 +187,23 @@ noremap <leader>nf :NERDTreeFind<cr>
 " EasyMotion (https://github.com/easymotion/vim-easymotion)
 nmap <space> <Plug>(easymotion-s)
 
-" CtrlP (https://github.com/ctrlpvim/ctrlp.vim)
-let g:ctrlp_dotfiles=1
-if executable('rg')
-  set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-  let g:ctrlp_use_caching = 0
-endif
+" fzf (https://github.com/junegunn/fzf.vim)
+nnoremap <C-p> :Files<Cr>
+let g:fzf_colors = {
+\   'bg+':     ['bg', 'Normal'],
+\   'fg+':     ['fg', 'Statement'],
+\   'hl':      ['fg', 'Underlined'],
+\   'hl+':     ['fg', 'Underlined'],
+\   'info':    ['fg', 'MatchParen'],
+\   'pointer': ['fg', 'Special'],
+\   'prompt':  ['fg', 'Normal'],
+\   'marker':  ['fg', 'MatchParen']
+\ }
 
-" Neomake (https://github.com/neomake/neomake)
-" autocmd! BufWritePost * Neomake
-" let g:neomake_ruby_enabled_makers = ['rubocop']
-" let g:neomake_javascript_enabled_makers = ['eslint']
-" let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
+" Likewise, Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-" Neoformat (https://github.com/sbdchd/neoformat)
-" autocmd! BufWritePre * Neoformat
-" let g:neoformat_enabled_javascript = ['prettier', 'eslint']
-" let g:neoformat_javascript_prettier = {
-"             \ 'exe': $PWD .'/node_modules/.bin/prettier',
-"             \ 'args': ['--single-quote', '--print-width=120', '--parser=flow', '--tab-width=2'],
-"             \ }
-"
-" let g:neoformat_javascript_eslint = {
-"             \ 'exe': $PWD .'/node_modules/.bin/eslint',
-"             \ 'args': ['--fix'],
-"             \ }
-"
 
 " Deoplete (https://github.com/Shougo/deoplete.nvim)
 let g:deoplete#enable_at_startup = 1
@@ -250,7 +240,6 @@ let g:go_highlight_extra_types = 1
 let g:go_highlight_generate_tags = 1
 let g:go_highlight_build_constraints = 1
 
-
 au FileType go nmap <C-g> :GoDeclsDir<cr>
 au FileType imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
 
@@ -273,22 +262,74 @@ au Filetype go command! -bang GAT call go#alternate#Switch(<bang>0, 'tabe')
 let g:javascript_plugin_flow = 1
 
 " ale (https://github.com/w0rp/ale)
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '⚠'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
-let g:ale_fix_on_save = 1
-let g:ale_linters = {
-      \ 'ruby': ['rubocop'],
-      \ 'javascript': ['stylelint', 'eslint'],
-      \ 'java': [],
-\}
+let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 0
 
-let g:ale_fixers = {
-      \ 'javascript': ['prettier', 'eslint'],
-      \ 'ruby': ['rubocop'],
-\}
+let g:ale_linters = {}
+let g:ale_linters.ruby = ['rubocop']
+let g:ale_linters.erb = ['erb']
+let g:ale_linters.javascript = ['prettier', 'eslint']
+let g:ale_linters.graphql = ['prettier', 'gqlint']
+let g:ale_linters.json = ['prettier', 'jsonlint']
+let g:ale_linters.python = ['pycodestyle']
 
-" nmap <silent> <C-e> <Plug>(ale_previous_wrap)
-" nmap <silent> <C-r> <Plug>(ale_next_wrap)
+let g:ale_fixers = {}
+let g:ale_fixers.ruby = ['rubocop']
+let g:ale_fixers.erb = ['erb']
+let g:ale_fixers.javascript = ['prettier-eslint']
+let g:ale_fixers.graphql = ['prettier', 'gqlint']
+let g:ale_fixers.json = ['prettier', 'jsonlint']
+let g:ale_fixers.python = ['autopep8']
+
+nmap <silent> <C-e> <Plug>(ale_previous_wrap)
+nmap <silent> <C-r> <Plug>(ale_next_wrap)
+noremap <Leader>f :ALEFix<cr>
+
+" vim-test (https://github.com/janko-m/vim-test)
+let test#strategy = "vimux"
+let test#custom_runners = {'Ruby': ['GitHub']}
+nmap <Leader>tn :TestNearest<CR>
+nmap <Leader>tf :TestFile<CR>
+
+" vim-grepper (https://github.com/mhinz/vim-grepper)
+let g:grepper = {}
+let g:grepper.tools = ['rg', 'git', 'grep']
+
+nnoremap <Leader>* :Grepper -cword -noprompt -highlight<CR>
+nmap gs <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
+
 
 " deoplete-ternjs (https://github.com/carlitux/deoplete-ternjs)
 let g:tern#filetypes = ['javascript', 'jsx', 'javascript.jsx']
+
+
+" vim-airline (https://github.com/vim-airline/vim-airline)
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tmuxline#enabled = 0
+let g:airline#extensions#neomake#enabled = 1
+let g:airline_skip_empty_sections = 1
+
+
+
+" TODO: clean up
+
+let g:VimuxOrientation = "h"
+
+
+" Tell the language client to use the default IP and port
+" that Solargraph runs on
+" let g:LanguageClient_serverCommands = {}
+" let g:LanguageClient_serverCommands.ruby = ['tcp://localhost:7658']
+" let g:LanguageClient_serverCommands.ruby = ['solargraph', 'stdio']
+
+" Don't send a stop signal to the server when exiting vim.
+" This is optional, but I don't like having to restart Solargraph
+" every time I restart vim.
+" let g:LanguageClient_autoStop = 0
+
+" autocmd FileType ruby setlocal omnifunc=LanguageClient#complete

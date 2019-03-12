@@ -147,7 +147,7 @@ source ./recipes/go
 source ./recipes/python
 source ./recipes/dots
 source ./recipes/editor
-source ./recipes/macos
+# source ./recipes/macos
 
 # We are done!
 printf "\n\n%s\n" "$finished"

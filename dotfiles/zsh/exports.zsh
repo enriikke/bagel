@@ -1,6 +1,7 @@
 # Setup terminal, editor, shell, and turn on colors
-# export TERM=xterm-256color
+export TERM=screen-256color
 export SHELL=$(which zsh)
+export VISUAL="nvim"
 export EDITOR="nvim"
 export CLICOLOR=1
 export LSCOLORS=Gxfxcxdxbxegedabagacad
@@ -9,16 +10,20 @@ export LSCOLORS=Gxfxcxdxbxegedabagacad
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='3;33'
 
-# Go Vars
+# Go vars
 export GOPATH=$HOME/Projects/ongoing/go
 export PATH=$PATH:$GOPATH/bin
 
 # Rust vars
 export PATH=$PATH:$HOME/.cargo/bin
 
-# Plugin Vars
+# Homebrew vars
+export PATH=$PATH:/usr/local/sbin
+
+# Plugin vars
 export NVM_LAZY_LOAD=true
 export BUNDLED_COMMANDS=(rubocop)
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
 # Other
 export ARCHFLAGS='-arch x86_64'
