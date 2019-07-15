@@ -6,14 +6,6 @@ call plug#begin('~/.config/nvim/plugged')
   " https://trevordmiller.com/projects/nova
   Plug 'trevordmiller/nova-vim'
 
-  " other colors I like
-  " Plug 'arcticicestudio/nord-vim'
-  " Plug 'gosukiwi/vim-atom-dark'
-  " Plug 'joshdick/onedark.vim'
-  " Plug 'jacoborus/tender.vim'
-  " Plug 'muellan/am-colors'
-  " Plug 'altercation/vim-colors-solarized'
-  " Plug 'joshdick/airline-onedark.vim'
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "                                  Utilities
@@ -24,16 +16,12 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'scrooloose/nerdtree'
   Plug 'bronson/vim-trailing-whitespace'
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'Shougo/neosnippet'
-  Plug 'Shougo/neosnippet-snippets'
   Plug 'mattn/gist-vim'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'Raimondi/delimitMate'
   Plug 'vim-scripts/tComment'
   Plug 'vim-airline/vim-airline'
-
-  " Plug 'sheerun/vim-polyglot'
+  Plug 'sheerun/vim-polyglot'
   Plug 'airblade/vim-rooter'
   Plug 'tpope/vim-dispatch'
   Plug 'radenling/vim-dispatch-neovim'
@@ -43,19 +31,19 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'w0rp/ale'
   Plug 'mhinz/vim-grepper'
   Plug 'janko-m/vim-test'
-
   Plug 'benmills/vimux'
-
-  " Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-
-  " Plug 'jeffkreeftmeijer/vim-numbertoggle'
-
-  " Plug 'sickill/vim-pasta'
+  Plug 'jeffkreeftmeijer/vim-numbertoggle'
   Plug 'christoomey/vim-run-interactive'
   Plug 'godlygeek/tabular'
   Plug 'majutsushi/tagbar'
   Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
   Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
+  Plug 'mhinz/vim-startify'
+  Plug 'mhinz/vim-signify'
+  Plug 'tyru/open-browser.vim'
+  Plug 'tyru/open-browser-github.vim'
+  Plug 'andymass/vim-matchup'
+  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() } }
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "                                    Ruby
@@ -70,16 +58,12 @@ call plug#begin('~/.config/nvim/plugged')
   "                                    Go
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
-  " Plug 'sebdah/vim-delve', { 'for': 'go' }
-  " Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "                                 JavaScript
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'jsx'] }
   Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx'] }
-  Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'jsx'], 'do': 'yarn global add tern' }
-  Plug 'wokalski/autocomplete-flow', { 'for': ['javascript', 'jsx'] }
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "                                   HTML
@@ -92,5 +76,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vitalk/vim-simple-todo', { 'for': 'markdown' }
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'jparise/vim-graphql'
+  Plug 'lervag/vimtex'
 
 call plug#end()

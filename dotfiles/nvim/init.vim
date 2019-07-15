@@ -57,6 +57,8 @@ set clipboard+=unnamed,unnamedplus                        " use the system clipb
 " set undofile                                              " enable persitent undo
 " set undodir=./tmp/undo                                    " set undo history dir
 set noshowmode                                            " don't show the current mode since airline does it
+set updatetime=300                                        " better experience for diagnostic messages
+set shortmess+=c                                          " don't give |ins-completion-menu| messages
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -164,6 +166,11 @@ autocmd BufEnter * silent! lcd %:p:h
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-v><Esc> <Esc>
 
+" buffer management
+nmap <leader>l :bn<CR>
+nmap <leader>h :bp<CR>
+nmap <leader>bq :bp <BAR> bd #<CR>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                Plugin Helpers
@@ -178,9 +185,9 @@ noremap <Leader>gd :Gdiff<cr>
 noremap <Leader>gb :Gblame<cr>
 
 " NERDTree (https://github.com/scrooloose/nerdtree)
-let NERDTreeWinPos='left'
-let NERDTreeShowHidden=1
-let NERDTreeIgnore=['\.pyc$', '\.DS_Store$']
+let g:NERDTreeWinPos='left'
+let g:NERDTreeShowHidden=1
+let g:NERDTreeIgnore=['\.pyc$', '\.DS_Store$']
 noremap <leader>k :NERDTreeToggle<cr>
 noremap <leader>nf :NERDTreeFind<cr>
 
@@ -204,15 +211,6 @@ let g:fzf_colors = {
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-
-" Deoplete (https://github.com/Shougo/deoplete.nvim)
-let g:deoplete#enable_at_startup = 1
-imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-imap <expr><CR> pumvisible() && neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" : "\<CR>"
-
-" neosnippet (https://github.com/Shougo/neosnippet.vim)
-let g:neosnippet#enable_completed_snippet = 1
-
 " Gists (https://github.com/mattn/gist-vim)
 let g:gist_post_private = 1
 
@@ -225,7 +223,6 @@ noremap <c-m> :TagbarToggle<cr>
 " vim-go (https://github.com/fatih/vim-go)
 let g:go_fmt_command = "goimports"
 let g:go_list_type = "quickfix"
-let g:go_snippet_engine = "neosnippet"
 let g:go_autodetect_gopath = 1
 let g:go_auto_sameids = 1
 let g:go_auto_type_info = 1
@@ -287,7 +284,7 @@ let g:ale_fixers.python = ['autopep8']
 
 nmap <silent> <C-e> <Plug>(ale_previous_wrap)
 nmap <silent> <C-r> <Plug>(ale_next_wrap)
-noremap <Leader>f :ALEFix<cr>
+noremap <Leader>af :ALEFix<cr>
 
 " vim-test (https://github.com/janko-m/vim-test)
 let test#strategy = "vimux"
@@ -303,33 +300,114 @@ nnoremap <Leader>* :Grepper -cword -noprompt -highlight<CR>
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
 
-
-" deoplete-ternjs (https://github.com/carlitux/deoplete-ternjs)
-let g:tern#filetypes = ['javascript', 'jsx', 'javascript.jsx']
-
-
 " vim-airline (https://github.com/vim-airline/vim-airline)
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tmuxline#enabled = 0
 let g:airline#extensions#neomake#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_skip_empty_sections = 1
 
-
-
-" TODO: clean up
-
+" vimux (https://github.com/benmills/vimux)
 let g:VimuxOrientation = "h"
 
+" vim-startify (https://github.com/mhinz/vim-startif://github.com/mhinz/vim-startify)
+let g:startify_change_to_dir = 0
+let g:startify_padding_left = 3
+let g:startify_lists = [
+\ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+\ { 'type': 'files',     'header': ['   MRU']            },
+\ { 'type': 'sessions',  'header': ['   Sessions']       },
+\ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+\ { 'type': 'commands',  'header': ['   Commands']       },
+\ ]
 
-" Tell the language client to use the default IP and port
-" that Solargraph runs on
-" let g:LanguageClient_serverCommands = {}
-" let g:LanguageClient_serverCommands.ruby = ['tcp://localhost:7658']
-" let g:LanguageClient_serverCommands.ruby = ['solargraph', 'stdio']
+" vim-signify (https://github.com/mhinz/vim-signify)
+let g:signify_vcs_list = [ 'git' ]
 
-" Don't send a stop signal to the server when exiting vim.
-" This is optional, but I don't like having to restart Solargraph
-" every time I restart vim.
-" let g:LanguageClient_autoStop = 0
+" open-browser-github (https://github.com/tyru/open-browser-github.vim)
+let g:openbrowser_github_url_exists_check = "ignore"
 
-" autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
+let g:tex_flavor = "latex"
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               COC Settings
+"                     (https://github.com/neoclide/coc.nvim)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
