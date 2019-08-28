@@ -6,6 +6,9 @@ call plug#begin('~/.config/nvim/plugged')
   " https://trevordmiller.com/projects/nova
   Plug 'trevordmiller/nova-vim'
 
+  " https://draculatheme.com/vim/
+  Plug 'dracula/vim', { 'as': 'dracula' }
+
 
   """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   "                                  Utilities

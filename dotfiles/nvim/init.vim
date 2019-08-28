@@ -95,7 +95,8 @@ set t_Co=256 " 256 colors in terminal
 let g:rehash256 = 1
 
 " color scheme
-colorscheme nova
+" colorscheme nova
+color dracula
 
 " highlight the 81st column
 set colorcolumn=+1
